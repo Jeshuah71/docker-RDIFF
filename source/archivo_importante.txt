@@ -1,0 +1,5 @@
+Este es un archivo muy importante
+Creado el: [fecha de hoy]
+Versión: 1.0
+
+Contenido importante que no quiero perder.

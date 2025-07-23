@@ -1,0 +1,5 @@
+NOTAS IMPORTANTES:
+- Probar sistema de respaldos
+- Verificar restauración
+- Documentar proceso
+- Celebrar cuando funcione

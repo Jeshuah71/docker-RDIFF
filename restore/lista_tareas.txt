@@ -1,0 +1,6 @@
+TAREAS PENDIENTES:
+☐ Configurar respaldos
+☐ Probar restauración
+☐ Documentar proceso
+☐ Automatizar respaldos diarios
+

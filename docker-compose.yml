@@ -1,0 +1,57 @@
+services:
+  backup:
+    build: .
+    volumes:
+      - ./source:/source:ro
+      - ./backup:/backup
+    command: /source /backup
+    
+  restore-latest:
+    build: .
+    volumes:
+      - ./backup:/backup
+      - ./restore:/restore
+    command: --restore-as-of now /backup /restore
+    profiles: ["restore"]
+    
+  restore-1day:
+    build: .
+    volumes:
+      - ./backup:/backup
+      - ./restore:/restore
+    command: --restore-as-of 1D /backup /restore
+    profiles: ["restore-1day"]
+    
+  restore-1week:
+    build: .
+    volumes:
+      - ./backup:/backup
+      - ./restore:/restore
+    command: --restore-as-of 7D /backup /restore
+    profiles: ["restore-1week"]
+    
+  list:
+    build: .
+    volumes:
+      - ./backup:/backup
+    command: --list-increments /backup
+    profiles: ["list"]
+    
+  cleanup:
+    build: .
+    volumes:
+      - ./backup:/backup
+    command: --remove-older-than 30D /backup
+    profiles: ["cleanup"]
+    
+  # AGREGAR ESTE SERVICIO
+  web-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./source:/source:ro
+      - ./backup:/backup
+      - ./restore:/restore
